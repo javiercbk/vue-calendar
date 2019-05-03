@@ -5,15 +5,19 @@
     @click="createEvent"
   >
     <div>{{date.date}}</div>
-    <div
-      class="calendar-clickable row border"
-      v-for="e in events"
-      :key="e.id"
-      @click.stop="editEvent(e)"
-      :style="{backgroundColor: e.color}"
-    >
-      <div class="col col-md-7 text-truncate">{{e.title}}</div>
-      <div class="col col-md-5 text-truncate">{{e.calendarMoment.fullHour}}</div>
+    <div class="row" v-for="(l, i) in eventLines" :key="i">
+      <div class="col d-flex flex-row">
+        <div
+          class="w-100 calendar-clickable border"
+          v-for="e in l"
+          :key="e.id"
+          @click.stop="editEvent(e)"
+          :style="{backgroundColor: e.color}"
+        >
+          <div class="text-truncate">{{e.title}}</div>
+          <div class="text-truncate">{{e.calendarMoment.fullHour}}</div>
+        </div>
+      </div>
     </div>
   </div>
 </template>

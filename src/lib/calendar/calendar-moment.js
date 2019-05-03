@@ -9,6 +9,18 @@ const daysInMonth = function(year, month) {
   return new Date(year, month + 1, 0).getDate();
 };
 
+const _otherDateUnixTime = function(date) {
+  let unixTime = null;
+  if (date instanceof CalendarMoment) {
+    unixTime = date._date.getTime();
+  } else if (date instanceof Date) {
+    unixTime = date.getTime();
+  } else {
+    throw new Error("invalid comparison");
+  }
+  return unixTime;
+};
+
 export default class CalendarMoment {
   constructor(date) {
     if (date instanceof CalendarMoment) {
@@ -172,15 +184,14 @@ export default class CalendarMoment {
     return `${yearStr}-${monthStr}-${dayStr}T${hoursStr}:${minutesStr}`;
   }
 
+  isSame(date) {
+    const unixTime = _otherDateUnixTime(date);
+    const thisUnixTime = this._date.getTime();
+    return thisUnixTime === unixTime;
+  }
+
   isAfter(date) {
-    let unixTime = null;
-    if (date instanceof CalendarMoment) {
-      unixTime = date._date.getTime();
-    } else if (date instanceof Date) {
-      unixTime = date.getTime();
-    } else {
-      throw new Error("invalid comparison");
-    }
+    const unixTime = _otherDateUnixTime(date);
     const thisUnixTime = this._date.getTime();
     return thisUnixTime > unixTime;
   }
