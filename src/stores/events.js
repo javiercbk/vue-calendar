@@ -1,6 +1,5 @@
 /* eslint-disable no-param-reassign */
 import _ from "lodash";
-import Promise from "bluebird";
 import CalendarMoment from "@/lib/calendar/calendar-moment";
 
 const NEXT_ID = "nextID";
@@ -11,6 +10,7 @@ const encodeEvent = function(event) {
     id: event.id,
     title: event.title,
     description: event.description,
+    color: event.color,
     date: event.calendarMoment.iso8601
   };
 };

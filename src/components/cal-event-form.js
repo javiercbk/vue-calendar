@@ -1,5 +1,5 @@
 import _ from "lodash";
-import { required, minLength } from "vuelidate/lib/validators";
+import { required, minLength, maxLength } from "vuelidate/lib/validators";
 import CalendarMoment from "@/lib/calendar/calendar-moment";
 
 export default {
@@ -18,6 +18,7 @@ export default {
         id: null,
         title: "",
         description: "",
+        color: "#FF7F27",
         date: ""
       }
     };
@@ -26,7 +27,8 @@ export default {
     event: {
       title: {
         required,
-        minLength: minLength(1)
+        minLength: minLength(1),
+        maxLength: maxLength(30)
       },
       date: {
         required,
@@ -51,6 +53,7 @@ export default {
           const emptyEvent = {
             title: "",
             description: "",
+            color: "#FF7F27",
             date: cm.iso8601,
             calendarMoment: cm
           };
@@ -62,7 +65,7 @@ export default {
       immediate: true,
       handler(newEvt) {
         if (newEvt) {
-          const e = _.pick(newEvt, ["id", "title", "description"]);
+          const e = _.pick(newEvt, ["id", "title", "description", "color"]);
           e.date = newEvt.calendarMoment.iso8601;
           this.event = e;
         }

@@ -1,5 +1,4 @@
 import Vue from "vue";
-import Promise from "bluebird";
 import Vuelidate from "vuelidate";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import {
@@ -10,8 +9,6 @@ import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 import App from "./app.vue";
 import router from "./router";
 import store from "./store";
-
-window.Promise = Promise;
 
 library.add(faChevronLeft, faChevronRight);
 Vue.component("font-awesome-icon", FontAwesomeIcon);

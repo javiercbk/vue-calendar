@@ -6,10 +6,11 @@
   >
     <div>{{date.date}}</div>
     <div
-      class="calendar-clickable row bg-info border"
+      class="calendar-clickable row border"
       v-for="e in events"
       :key="e.id"
       @click.stop="editEvent(e)"
+      :style="{backgroundColor: e.color}"
     >
       <div class="col col-md-7 text-truncate">{{e.title}}</div>
       <div class="col col-md-5 text-truncate">{{e.calendarMoment.fullHour}}</div>

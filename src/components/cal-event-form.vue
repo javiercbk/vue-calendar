@@ -6,10 +6,11 @@
         type="text"
         class="form-control"
         id="event-title-help"
+        maxlength="30"
         v-model="$v.event.title.$model"
         aria-describedby="event-title-help"
       >
-      <small id="event-title-help" class="form-text text-muted">Mandatory event title</small>
+      <small id="event-title-help" class="form-text text-muted">Mandatory event title (max 30 chars)</small>
     </div>
     <div class="form-group">
       <label for="event-description">Description</label>
@@ -21,6 +22,17 @@
         aria-describedby="event-description-help"
       >
       <small id="event-description-help" class="form-text text-muted">Optional event description</small>
+    </div>
+    <div class="form-group">
+      <label for="event-color">Color</label>
+      <input
+        type="color"
+        class="form-control"
+        id="event-color"
+        v-model="event.color"
+        aria-describedby="event-color-help"
+      >
+      <small id="event-color-help" class="form-text text-muted">Event color</small>
     </div>
     <div class="form-group">
       <label for="event-date">Date</label>
